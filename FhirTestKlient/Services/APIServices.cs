@@ -1,16 +1,10 @@
 ﻿using FhirTestKlient.Models;
-using FhirTestKlient.ViewModels;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
-using Hl7.FhirPath.Sprache;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 
@@ -94,17 +88,18 @@ namespace FhirTestKlient.Services
                     ClientAppointment newPat = new ClientAppointment(entry.Resource as Appointment);
                     retVal.Add(newPat);
                 }
+
             }
             return retVal;
 
         }
+
         public async Task<Appointment> PostAppointmentAsync(Appointment app)
         {
             using (HttpClient client = new HttpClient())
             {
            
                 var serializer = new FhirJsonSerializer();
-
 
                 var JsonAppointment  = serializer.SerializeToString(app);
 
@@ -119,22 +114,23 @@ namespace FhirTestKlient.Services
             }
 
         }
-        public async Task<Appointment> PutAppointmentAsync(Appointment app)
+        public async Task<ClientAppointment> PutAppointmentAsync(ClientAppointment app)
         {
             using (HttpClient client = new HttpClient())
             {
                 var serializer = new FhirJsonSerializer();
 
-                var JsonAppointment = serializer.SerializeToString(app);
+                var JsonAppointment = serializer.SerializeToString(app.Appointment);
 
                 //var appointment = JsonConvert.SerializeObject(app);
                 HttpContent httpContent = new StringContent(JsonAppointment);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                var result = await client.PutAsync(AppointmentsUrl + "/" + app.Id.ToString(), httpContent);
+                var result = await client.PutAsync(AppointmentsUrl + "/" + app.Appointment.Id.ToString(), httpContent); 
 
                 string p = await result.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<Appointment>(p);
+
+                return JsonConvert.DeserializeObject<ClientAppointment>(p);
             }
 
         }

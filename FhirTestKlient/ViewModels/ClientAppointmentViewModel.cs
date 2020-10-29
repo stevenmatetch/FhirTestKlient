@@ -29,31 +29,31 @@ namespace FhirTestKlient.ViewModels
             //appointments.Add(SkapaTestAppointment3());
 
         }
-        //public string GetIdentifierValue
-        //{
-        //    get
-        //    {
-        //        Identifier id = Appointment.Identifier.FirstOrDefault(x => x.Use == Identifier.IdentifierUse.Official);
-        //        if (id != null) return id.Value;
-        //        return "";
-        //    }
-        //}
-        //public string GetStartTime
-        //{
-        //    get
-        //    {
-        //        return Appointment.Start.GetValueOrDefault().ToString("yyyy-MM-dd   HH: mm:ss");
+        public string GetIdentifierValue
+        {
+            get
+            {
+                Identifier id = Appointment.Identifier.FirstOrDefault();
+                if (id != null) return id.Value;
+                return "";
+            }
+        }
+        public string GetStartTime
+        {
+            get
+            {
+                return Appointment.Start.GetValueOrDefault().ToString("yyyy-MM-dd   HH: mm:ss");
 
-        //    }
-        //}
-        //public string GetEndTime
-        //{
-        //    get
-        //    {
-        //        return Appointment.End.GetValueOrDefault().ToString("yyyy-MM-dd   HH: mm:ss");
+            }
+        }
+        public string GetEndTime
+        {
+            get
+            {
+                return Appointment.End.GetValueOrDefault().ToString("yyyy-MM-dd   HH: mm:ss");
 
-        //    }
-        //}
+            }
+        }
         public string GetJSONappointments
         {
             get

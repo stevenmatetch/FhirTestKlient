@@ -26,10 +26,10 @@ namespace FhirTestKlient._View
         public APIServices aPIServices;
         public ClientAppointmentViewModel clientAppointmentViewModel { get; set; }
         public ClientAppointment clientAppointment { get; set; }
-        public Appointment thisAppointment { get; set; }
+        public ClientAppointment thisAppointment { get; set; }
 
         public List<string> Statuses { get; set; }
-        public PostAndPutAppointmentDialog(Appointment app)
+        public PostAndPutAppointmentDialog(ClientAppointment app)
         {
             
             Statuses = new List<string>()
@@ -44,7 +44,7 @@ namespace FhirTestKlient._View
         /* Skapa ny appointment */
         public PostAndPutAppointmentDialog()
         {
-            thisAppointment = new Appointment();
+            thisAppointment = new ClientAppointment();
             //thisAppointment.Id = "0";
 
             clientAppointmentViewModel = new ClientAppointmentViewModel();

@@ -29,7 +29,7 @@ namespace FhirTestKlient.Models
     {
         public ClientAppointmentViewModel clientappointmentViewModel;
         public APIServices aPIServices;
-        public Appointment selectedAppointemnt { get; set; }
+        public ClientAppointment selectedAppointemnt { get; set; }
 
         public AppointmentPage()
         {
@@ -83,7 +83,7 @@ namespace FhirTestKlient.Models
         private async void Uppdaterra_Click(object sender, RoutedEventArgs e)
         {
 
-            PostAndPutAppointmentDialog c = new PostAndPutAppointmentDialog(selectedAppointemnt);
+            PostAndPutAppointmentDialog c = new PostAndPutAppointmentDialog(selectedAppointemnt );
             var res = await c.ShowAsync();
         }
 

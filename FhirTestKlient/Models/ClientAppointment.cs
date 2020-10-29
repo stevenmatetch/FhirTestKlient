@@ -13,9 +13,34 @@ namespace FhirTestKlient.Models
    public class ClientAppointment
     {
         public Appointment Appointment { get; set; }
-        public Appointment SelectedAppointment { get; set; }
+     
         public List<string> Statuses { get; set; }
-        public string GetIdentifierValue
+     
+        public DateTimeOffset PutGetStartTime
+        {
+            get
+            {
+                return Appointment.Start.GetValueOrDefault();
+
+            }
+            set
+            {
+                //DateTimeOffset nyttdatum = Appointment.Start.GetValueOrDefault().AddDays(value);
+            }
+        }
+        public DateTimeOffset PutGetEndTime
+        {
+            get
+            {
+                return Appointment.End.GetValueOrDefault();
+
+            }
+            set
+            {
+
+            }
+        }
+        public string PutGetIdentifierValue
         {
             get
             {
@@ -23,12 +48,20 @@ namespace FhirTestKlient.Models
                 if (id != null) return id.Value;
                 return "";
             }
+            set
+            {
+                
+            }
         }
         public string GetStartTime
         {
             get
             {
                 return Appointment.Start.GetValueOrDefault().ToString("yyyy-MM-dd   HH: mm:ss");
+
+            }
+            set
+            {
 
             }
         }
@@ -39,8 +72,21 @@ namespace FhirTestKlient.Models
                 return Appointment.End.GetValueOrDefault().ToString("yyyy-MM-dd   HH: mm:ss");
 
             }
+            set
+            {
+
+            }
         }
-        
+        public string GetIdentifierValue
+        {
+            get
+            {
+                Identifier id = Appointment.Identifier.FirstOrDefault();
+                if (id != null) return id.Value;
+                return "";
+            }
+        }
+
         public ClientAppointment(Appointment app)
         {
             Appointment = app;

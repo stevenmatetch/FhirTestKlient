@@ -22,7 +22,7 @@ namespace FhirTestKlient.Models
                 if (id != null) return id.Value;
                 return "";
             }
-        }
+        } 
 
         public string GetTelecom
         {

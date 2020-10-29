@@ -21,7 +21,6 @@
         </SplitView>
 
         <Grid Margin="100,144,27,10">
-
             <!--<GridView ItemsSource="{x:Bind clientappointmentViewModel.appointments}"     Margin="511,539,30,148">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="models:ClientAppointment">
