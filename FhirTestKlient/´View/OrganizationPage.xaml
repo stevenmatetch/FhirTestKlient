@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="FhirTestKlient._View.OrganizationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FhirTestKlient._View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:models="using:FhirTestKlient.Models"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid >
+        <SplitView Name="MySplitView" DisplayMode="CompactOverlay" OpenPaneLength="500" CompactPaneLength="0" Margin="0,54,971,53">
+            <SplitView.Pane>
+
+
+                <TextBox x:Name="JsonTextBlock" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{x:Bind clientOrganizationViewModel.GetJSONOrganization}" FontSize="15" Margin="10,30,30,30" />
+
+
+            </SplitView.Pane>
+
+        </SplitView>
+
+
+
+
+        <Button x:Name="OpenSplitview" FontSize="12" FontFamily="segoe MDL2 Assets" Content="&#xE712;" Margin="0,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="OpenSplitview_Click"/>
+        <Button x:Name="BackButton" FontFamily="segoe MDL2 Assets" Content="&#xE72B;" Margin="55,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="BackButton_Click"/>
+        <Button x:Name="ForwardButton" FontFamily="segoe MDL2 Assets" Content="&#xE72A;" Margin="110,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="ForwardButton_Click"/>
+
+
+
+
+
+        <Grid Margin="823,821,494,91">
+            <Button Content="Hämta" CornerRadius="5" Margin="10,0,0,0" Height="65" Width="146"/>
+
+        </Grid>
+
+        <ListView Margin="615,54,103,464" ItemsSource="{x:Bind clientOrganizationViewModel.organizations}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:ClientOrganization" >
+                    <StackPanel Spacing="5" Orientation="Vertical">
+
+
+                        <TextBlock Text =""   FontWeight="SemiBold" FontSize="18" />
+
+                        <TextBlock Text ="{x:Bind Organization.Name}"  FontWeight="SemiBold" FontSize="18" />
+                        <TextBlock Text ="{x:Bind GetIdentifierValue}"  FontWeight="SemiBold" FontSize="18" />
+                        <TextBlock Text ="{x:Bind GetTelecom}"  FontWeight="SemiBold" FontSize="18" />
+
+                        <!--<TextBlock Text ="{x:Bind Slot.Status}"  FontWeight="SemiBold" FontSize="18" />-->
+                        <!--<TextBlock Text="{x:Bind Slot.Identifier}"  FontWeight="SemiBold" FontSize="18" />
+                        <TextBlock Text ="{x:Bind Slot.}"   FontWeight="SemiBold" FontSize="18" />-->
+                        <TextBlock Text ="{x:Bind Organization.Active }"  FontWeight="SemiBold" FontSize="18" />
+                        <TextBlock Text =""   FontWeight="SemiBold" FontSize="18" />
+
+                    </StackPanel>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+
+
+    </Grid>
+</Page>
