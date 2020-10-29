@@ -1,4 +1,5 @@
-﻿using Hl7.Fhir.Model;
+﻿using FhirTestKlient.Services;
+using Hl7.Fhir.Model;
 using Hl7.Fhir.Support;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,33 @@ namespace FhirTestKlient.Models
         public Appointment Appointment { get; set; }
      
         public List<string> Statuses { get; set; }
-     
-        public DateTimeOffset PutGetStartTime
+
+
+        public TimeSpan PutEndTime
+        {
+            get
+            {
+                return PutEndDate - PutEndDate.Date;
+
+            }
+            set
+            {
+                DateTime nyttdatum = PutEndDate.Date.Add(value);
+            }
+        }
+        public TimeSpan PutStartTime
+        {
+            get
+            {
+                return PutStartDate - PutStartDate.Date;
+
+            }
+            set
+            {
+                DateTime nyttdatum = PutStartDate.Date.Add(value);
+            }
+        }
+        public DateTimeOffset PutStartDate
         {
             get
             {
@@ -28,7 +54,7 @@ namespace FhirTestKlient.Models
                 //DateTimeOffset nyttdatum = Appointment.Start.GetValueOrDefault().AddDays(value);
             }
         }
-        public DateTimeOffset PutGetEndTime
+        public DateTimeOffset PutEndDate
         {
             get
             {
@@ -40,7 +66,7 @@ namespace FhirTestKlient.Models
 
             }
         }
-        public string PutGetIdentifierValue
+        public string PutIdentifierValue
         {
             get
             {
@@ -62,7 +88,7 @@ namespace FhirTestKlient.Models
             }
             set
             {
-
+                
             }
         }
         public string GetEndTime

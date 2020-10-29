@@ -83,7 +83,7 @@ namespace FhirTestKlient.Models
         private async void Uppdaterra_Click(object sender, RoutedEventArgs e)
         {
 
-            PostAndPutAppointmentDialog c = new PostAndPutAppointmentDialog(selectedAppointemnt );
+            PostAndPutAppointmentDialog c = new PostAndPutAppointmentDialog(selectedAppointemnt);
             var res = await c.ShowAsync();
         }
 

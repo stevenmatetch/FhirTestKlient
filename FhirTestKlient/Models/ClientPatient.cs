@@ -20,6 +20,7 @@ namespace FhirTestKlient.Models
 
         }
 
+        // Endanst för binding
         public string GetIdentifierValue
         {
             get
@@ -31,16 +32,19 @@ namespace FhirTestKlient.Models
                 return "";
             }
         }
+        // Endanst för binding
         public string GetOfficialName
         {
             get
             {
               
                 HumanName humanname = Patient.Name.FirstOrDefault();
-              
                 return humanname.Text;
+
+
             }
         }
+        // Endanst för binding
         public string GetTelecom
         {
             get
@@ -52,6 +56,7 @@ namespace FhirTestKlient.Models
 
             }
         }
+        // Endanst för binding
         public string GetAddress
         {
             get

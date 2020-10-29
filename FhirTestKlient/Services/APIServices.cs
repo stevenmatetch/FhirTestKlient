@@ -94,27 +94,29 @@ namespace FhirTestKlient.Services
 
         }
 
-        public async Task<Appointment> PostAppointmentAsync(Appointment app)
+        public async Task<Appointment> PostAppointmentAsync(ClientAppointment app)
         {
             using (HttpClient client = new HttpClient())
             {
            
                 var serializer = new FhirJsonSerializer();
 
-                var JsonAppointment  = serializer.SerializeToString(app);
+                var JsonAppointment  = serializer.SerializeToString(app.Appointment);
 
                 //var appointment = JsonConvert.SerializeObject(app);
                 HttpContent httpContent = new StringContent(JsonAppointment);
+
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 var result = await client.PostAsync(AppointmentsUrl, httpContent);
 
                 string p = await result.Content.ReadAsStringAsync();
+
                 return JsonConvert.DeserializeObject<Appointment>(p);
             }
 
         }
-        public async Task<ClientAppointment> PutAppointmentAsync(ClientAppointment app)
+        public async Task<Appointment> PutAppointmentAsync(ClientAppointment app)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -130,7 +132,7 @@ namespace FhirTestKlient.Services
 
                 string p = await result.Content.ReadAsStringAsync();
 
-                return JsonConvert.DeserializeObject<ClientAppointment>(p);
+                return JsonConvert.DeserializeObject<Appointment>(p);
             }
 
         }

@@ -24,18 +24,18 @@ namespace FhirTestKlient._View
     public sealed partial class PostAndPutAppointmentDialog : ContentDialog
     {
         public APIServices aPIServices;
-        public ClientAppointmentViewModel clientAppointmentViewModel { get; set; }
-        public ClientAppointment clientAppointment { get; set; }
+        //public ClientAppointmentViewModel clientAppointmentViewModel { get; set; }
+        //public ClientAppointment clientAppointment { get; set; }
         public ClientAppointment thisAppointment { get; set; }
-
+        public Appointment Appointment { get; }
+     
         public List<string> Statuses { get; set; }
         public PostAndPutAppointmentDialog(ClientAppointment app)
         {
-            
             Statuses = new List<string>()
             { "Proposed", "Pending", "Booked", "Arrived", "Fulfilled", "CheckedIn", "Waitlist", "Noshow", "EnteredInError" };
             thisAppointment = app;
-            clientAppointmentViewModel = new ClientAppointmentViewModel();
+            //clientAppointmentViewModel = new ClientAppointmentViewModel();
             aPIServices = new APIServices();
             this.InitializeComponent();
 
@@ -45,9 +45,11 @@ namespace FhirTestKlient._View
         public PostAndPutAppointmentDialog()
         {
             thisAppointment = new ClientAppointment();
-            //thisAppointment.Id = "0";
-
-            clientAppointmentViewModel = new ClientAppointmentViewModel();
+            thisAppointment.Appointment = new Appointment();
+            Statuses = new List<string>()
+            { "Proposed", "Pending", "Booked", "Arrived", "Fulfilled", "CheckedIn", "Waitlist", "Noshow", "EnteredInError" };
+            
+            //clientAppointmentViewModel = new ClientAppointmentViewModel();
             aPIServices = new APIServices();
             this.InitializeComponent();
         }
@@ -59,15 +61,15 @@ namespace FhirTestKlient._View
 
         private async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-        //    if (thisAppointment.Id != null)
-            //{
-                thisAppointment = await aPIServices.PutAppointmentAsync(thisAppointment);
+            if (thisAppointment.Appointment.Id != null)
+            {
+                thisAppointment.Appointment = await aPIServices.PutAppointmentAsync(thisAppointment);
 
-        //    }
-        //    else
-        //    {
-        //        thisAppointment = await aPIServices.PostAppointmentAsync(thisAppointment);
-        //    }
+            }
+            else
+            {
+                thisAppointment.Appointment = await aPIServices.PostAppointmentAsync(thisAppointment);
+            }
         }
     }
 }

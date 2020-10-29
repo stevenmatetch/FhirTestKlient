@@ -48,7 +48,6 @@ namespace FhirTestKlient.ViewModels
             schedule.PlanningHorizon = new Period();
             schedule.PlanningHorizon.Start = DateTime.Now.ToString("yyyy-MM-dd   HH: mm:ss");
 
-
             schedule.PlanningHorizon.End = DateTime.Now.AddDays(9).ToString("yyyy-MM-dd   HH: mm:ss");
 
             return new ClientSchedule(schedule);
