@@ -93,7 +93,11 @@ namespace FhirTestKlient.Services
             return retVal;
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public async Task<Appointment> PostAppointmentAsync(ClientAppointment app)
         {
             using (HttpClient client = new HttpClient())
@@ -116,6 +120,11 @@ namespace FhirTestKlient.Services
             }
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public async Task<Appointment> PutAppointmentAsync(ClientAppointment app)
         {
             using (HttpClient client = new HttpClient())

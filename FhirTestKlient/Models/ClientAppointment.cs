@@ -17,6 +17,10 @@ namespace FhirTestKlient.Models
      
         public List<string> Statuses { get; set; }
 
+       
+
+
+
 
         public TimeSpan PutEndTime
         {
@@ -32,6 +36,9 @@ namespace FhirTestKlient.Models
         }
         public TimeSpan PutStartTime
         {
+            
+                
+           
             get
             {
                 return PutStartDate - PutStartDate.Date;
@@ -42,6 +49,7 @@ namespace FhirTestKlient.Models
                 DateTime nyttdatum = PutStartDate.Date.Add(value);
             }
         }
+        
         public DateTimeOffset PutStartDate
         {
             get

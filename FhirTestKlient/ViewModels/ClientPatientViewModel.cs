@@ -51,7 +51,7 @@ namespace FhirTestKlient.ViewModels
                 NotifyPropertyChanged("GetJSONPatient");
             }
         }
-
+        
         private void NotifyPropertyChanged(string caller = "")
         {
             if (PropertyChanged != null)
@@ -68,8 +68,9 @@ namespace FhirTestKlient.ViewModels
             Patient = new Patient();
         
         }
-    
+       
 
+        // endast för binding
         public string GetIdentifierValue
         {
             get
@@ -81,6 +82,7 @@ namespace FhirTestKlient.ViewModels
                 return "";
             }
         }
+        // endast för binding
         public string GetOfficialName
         {
             get
@@ -91,7 +93,7 @@ namespace FhirTestKlient.ViewModels
                 return humanname.Text;
             }
         }
-      
+        // endast för binding
         public string GetAddress
         {
             get
@@ -103,6 +105,7 @@ namespace FhirTestKlient.ViewModels
 
             }
         }
+        // endast för binding
         public string GetTelecom
         {
             get
@@ -115,8 +118,10 @@ namespace FhirTestKlient.ViewModels
 
             }
         }
+        // endast för binding
         public string GetJSONPatient
         {
+
             get
             {
                 var serializer = new FhirJsonSerializer();
@@ -124,6 +129,7 @@ namespace FhirTestKlient.ViewModels
                 string text;
                 if (Patient.ResourceBase != null)
                 {
+                    // en patient
                     text = serializer.SerializeToString(Patient);
                 } else
                 {

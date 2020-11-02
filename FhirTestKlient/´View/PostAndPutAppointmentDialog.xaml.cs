@@ -35,6 +35,7 @@ namespace FhirTestKlient._View
             Statuses = new List<string>()
             { "Proposed", "Pending", "Booked", "Arrived", "Fulfilled", "CheckedIn", "Waitlist", "Noshow", "EnteredInError" };
             thisAppointment = app;
+        
             //clientAppointmentViewModel = new ClientAppointmentViewModel();
             aPIServices = new APIServices();
             this.InitializeComponent();
