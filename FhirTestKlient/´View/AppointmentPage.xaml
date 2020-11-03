@@ -13,7 +13,7 @@
             <SplitView.Pane>
 
 
-                <TextBox x:Name="JsonTextBlock"  IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"  FontSize="15"  Text="{x:Bind clientappointmentViewModel.GetJSONappointments}"  Margin="0,30,30,30" />
+                <TextBox x:Name="JsonTextBlock"  IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"  FontSize="15"  Text="{x:Bind UpdateClientAppointmentViewModel.GetJSONappointments, Mode=OneWay}"  Margin="0,30,30,30" />
 
             </SplitView.Pane>
             <Grid Margin="0,10,0,-10"/>
@@ -48,11 +48,13 @@
                     <DataTemplate x:DataType="models:ClientAppointment" >
                         <StackPanel Spacing="5" Orientation="Vertical">
 
+                            <TextBlock Text =""   FontWeight="SemiBold" FontSize="10" />
                             <TextBlock Text ="{x:Bind GetIdentifierValue }"  FontWeight="SemiBold" FontSize="18" />
                             <TextBlock Text ="{x:Bind Appointment.Status }"  FontWeight="SemiBold" FontSize="18" />
                             <TextBlock Text ="{x:Bind GetStartTime}"  FontWeight="SemiBold" FontSize="18" />
                             <TextBlock Text="{x:Bind GetEndTime}"  FontWeight="SemiBold" FontSize="18" />
                             <TextBlock Text ="{x:Bind Appointment.Comment}"   FontWeight="SemiBold" FontSize="18" />
+                            <TextBlock Text =""   FontWeight="SemiBold" FontSize="10" />
 
                         </StackPanel>
 

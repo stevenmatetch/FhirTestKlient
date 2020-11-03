@@ -51,8 +51,8 @@ namespace FhirTestKlient.Models
             {
 
                 ContactPoint contactPoint = Patient.Telecom.FirstOrDefault();
-                if (contactPoint == null) return "";
-                return contactPoint.Value;
+                if (contactPoint != null) return contactPoint.Value;
+                return "";
 
             }
         }
@@ -62,15 +62,14 @@ namespace FhirTestKlient.Models
             get
             {
                 Address address = Patient.Address.FirstOrDefault();
-                if (address == null) return "";
+                //if (address == null) return "";
 
                 return address.Text;
 
             }
         }
 
-
-    }
+   }
 }
 
 

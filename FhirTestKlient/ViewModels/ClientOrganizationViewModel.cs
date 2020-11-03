@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 namespace FhirTestKlient.ViewModels
 {
   
- public   class ClientOrganizationViewModel
-    {
+   public   class ClientOrganizationViewModel
+   {
         public ObservableCollection<ClientOrganization> organizations { get; set; }
 
         public ClientOrganizationViewModel()
@@ -52,7 +52,6 @@ namespace FhirTestKlient.ViewModels
 
         }
         public string GetJSONOrganization
-
         {
             get
             {
@@ -63,9 +62,8 @@ namespace FhirTestKlient.ViewModels
                 return jsonString;
 
             }
-
         }
 
 
-    }
+   }
 }

@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using Hl7.Fhir.Model;
 using FhirTestKlient._View;
 using FhirTestKlient.Services;
+using System.ComponentModel;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -30,14 +31,37 @@ namespace FhirTestKlient.Models
         public ClientAppointmentViewModel clientappointmentViewModel;
         public APIServices aPIServices;
         public ClientAppointment selectedAppointemnt { get; set; }
-
+        public event PropertyChangedEventHandler PropertyChanged;
         public AppointmentPage()
         {
             aPIServices = new APIServices();
             clientappointmentViewModel = new ClientAppointmentViewModel();
+            clientappointmentViewModel.appointments = new System.Collections.ObjectModel.ObservableCollection<ClientAppointment>();
             this.InitializeComponent();
             GetAllAppointments();
          
+        }
+        public ClientAppointmentViewModel UpdateClientAppointmentViewModel
+        {
+            get
+            {
+                return clientappointmentViewModel;
+            }
+            set
+            {
+                clientappointmentViewModel = value;
+                NotifyPropertyChanged("UpdateClientAppointmentViewModel");
+
+            }
+
+        }
+        private void NotifyPropertyChanged(string caller = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(caller));
+            }
+
         }
 
         public async void GetAllAppointments()
@@ -76,19 +100,16 @@ namespace FhirTestKlient.Models
 
         }
 
-       
-
-     
-
         private async void Uppdaterra_Click(object sender, RoutedEventArgs e)
         {
 
             PostAndPutAppointmentDialog c = new PostAndPutAppointmentDialog(selectedAppointemnt);
             var res = await c.ShowAsync();
+
+            GetAllAppointments();
+
         }
 
-       
     }
 
-    
 }

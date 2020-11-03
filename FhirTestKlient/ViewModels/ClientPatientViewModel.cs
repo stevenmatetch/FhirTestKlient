@@ -61,7 +61,6 @@ namespace FhirTestKlient.ViewModels
 
         }
 
-
         public ClientPatientViewModel( )
         {
             Patients = new ObservableCollection<ClientPatient>();
@@ -69,7 +68,6 @@ namespace FhirTestKlient.ViewModels
         
         }
        
-
         // endast för binding
         public string GetIdentifierValue
         {
@@ -111,9 +109,9 @@ namespace FhirTestKlient.ViewModels
             get
             {
                 ContactPoint contactPoint = Patient.Telecom.FirstOrDefault();
-                if (contactPoint == null) return "";
+                if (contactPoint != null) return contactPoint.Value;
 
-                return contactPoint.Value;
+                return"";
 
 
             }

@@ -19,15 +19,16 @@
         </Grid.ColumnDefinitions>
 
 
-        <TextBox HorizontalAlignment="Left" Margin="2,-321,0,0" PlaceholderText="Identifier value" Text="{x:Bind thisAppointment.PutIdentifierValue, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Grid.ColumnSpan="2" Width="217"/>
+        <TextBox HorizontalAlignment="Left" Margin="2,-321,0,0" PlaceholderText="Identifier value" Text="{x:Bind thisAppointment.PutIdentifierValue, Mode =TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Grid.ColumnSpan="2" Width="217"/>
 
-        <TextBox HorizontalAlignment="Left" Margin="2,-270,0,0" PlaceholderText="Comment" Text="{x:Bind thisAppointment.Appointment.Comment, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="100" Width="296" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Margin="2,-270,0,0" PlaceholderText="Comment" Text="{x:Bind thisAppointment.PutComment, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="100" Width="296" Grid.ColumnSpan="2"/>
         <DatePicker Date="{x:Bind   thisAppointment.PutStartDate, Mode=TwoWay}" Margin="2,-151,1,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.ColumnSpan="2"/>
         <!--<TimePicker Margin="2,-59,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>-->
         <DatePicker Date="{x:Bind thisAppointment.PutEndDate, Mode=TwoWay}" Margin="2,-57,1,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.ColumnSpan="2"/>
-        <ComboBox PlaceholderText="{x:Bind thisAppointment.Appointment.Status}" ItemsSource="{x:Bind Statuses}" Margin="2,36,0,0" Width="160" Grid.ColumnSpan="2"/>
-        <TimePicker Time="{x:Bind thisAppointment.PutStartTime}" Margin="2,-104,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <TimePicker Time="{x:Bind thisAppointment.PutEndTime}" Margin="2,-9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.512,0" Grid.ColumnSpan="2"/>
+        <!--<ComboBox PlaceholderText="{x:Bind thisAppointment.Appointment.Status}" ItemsSource="{x:Bind Statuses, Mode=TwoWay}" Margin="2,36,0,0" Width="160" Grid.ColumnSpan="2"/>-->
+        <ComboBox SelectedItem="{x:Bind thisAppointment.PutStatus, Mode=TwoWay}" ItemsSource="{x:Bind Statuses, Mode=TwoWay}" Margin="2,36,0,0" Width="160" Grid.ColumnSpan="2"/>
+        <TimePicker Time="{x:Bind thisAppointment.PutStartTime, Mode=TwoWay}" Margin="2,-104,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TimePicker Time="{x:Bind thisAppointment.PutEndTime, Mode=TwoWay}" Margin="2,-9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.512,0" Grid.ColumnSpan="2"/>
 
 
 

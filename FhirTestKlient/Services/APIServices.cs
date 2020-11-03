@@ -69,7 +69,10 @@ namespace FhirTestKlient.Services
             return res as Appointment;
 
         }
-
+        /// <summary>
+        /// Hämtar alla bokningar från FHIR-servern
+        /// </summary>
+        /// <returns><ObservableCollection<ClientAppointment></returns>
         public async Task<ObservableCollection<ClientAppointment>> GetAllAppointmentAsync()
         {
 
@@ -85,8 +88,8 @@ namespace FhirTestKlient.Services
                 foreach (var entry in bund.Entry)
                 {
 
-                    ClientAppointment newPat = new ClientAppointment(entry.Resource as Appointment);
-                    retVal.Add(newPat);
+                    ClientAppointment newApp = new ClientAppointment(entry.Resource as Appointment);
+                    retVal.Add(newApp);
                 }
 
             }
@@ -94,10 +97,10 @@ namespace FhirTestKlient.Services
 
         }
         /// <summary>
-        /// 
+        /// Lägger till en bokning i FHIR-servern
         /// </summary>
         /// <param name="app"></param>
-        /// <returns></returns>
+        /// <returns>Appointment</returns>
         public async Task<Appointment> PostAppointmentAsync(ClientAppointment app)
         {
             using (HttpClient client = new HttpClient())
@@ -121,10 +124,10 @@ namespace FhirTestKlient.Services
 
         }
         /// <summary>
-        /// 
+        /// Ändrar en bokning i FHIR-servern
         /// </summary>
         /// <param name="app"></param>
-        /// <returns></returns>
+        /// <returns>Appointment</returns>
         public async Task<Appointment> PutAppointmentAsync(ClientAppointment app)
         {
             using (HttpClient client = new HttpClient())

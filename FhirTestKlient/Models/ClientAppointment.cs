@@ -1,26 +1,37 @@
 ﻿using FhirTestKlient.Services;
+using Hl7.Fhir.FhirPath;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Support;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Appointments;
 using Windows.UI.Xaml.Controls;
+using static Hl7.Fhir.Model.Appointment;
 
 namespace FhirTestKlient.Models
 {
    public class ClientAppointment
     {
-        public Appointment Appointment { get; set; }
+        public Hl7.Fhir.Model.Appointment Appointment { get; set; }
      
         public List<string> Statuses { get; set; }
 
-       
-
-
-
+        public string PutStatus
+        {
+            get
+            {
+                return Appointment.Status.ToString();
+            }
+            set
+            {
+                Appointment.Status = GetAppointmentStatus(value);
+            }
+        }
 
         public TimeSpan PutEndTime
         {
@@ -31,14 +42,13 @@ namespace FhirTestKlient.Models
             }
             set
             {
-                DateTime nyttdatum = PutEndDate.Date.Add(value);
+                Appointment.End = Appointment.End.Value.Date.Add(value);
             }
         }
+       
         public TimeSpan PutStartTime
         {
             
-                
-           
             get
             {
                 return PutStartDate - PutStartDate.Date;
@@ -46,7 +56,7 @@ namespace FhirTestKlient.Models
             }
             set
             {
-                DateTime nyttdatum = PutStartDate.Date.Add(value);
+                Appointment.Start = Appointment.Start.Value.Date.Add(value);
             }
         }
         
@@ -59,11 +69,13 @@ namespace FhirTestKlient.Models
             }
             set
             {
-                //DateTimeOffset nyttdatum = Appointment.Start.GetValueOrDefault().AddDays(value);
+
+                Appointment.Start = value;
             }
         }
         public DateTimeOffset PutEndDate
         {
+           
             get
             {
                 return Appointment.End.GetValueOrDefault();
@@ -71,7 +83,7 @@ namespace FhirTestKlient.Models
             }
             set
             {
-
+                Appointment.End = value;
             }
         }
         public string PutIdentifierValue
@@ -84,7 +96,19 @@ namespace FhirTestKlient.Models
             }
             set
             {
-                
+                //Appointment.Identifier = Appointment.Identifier.Select(x => { x.Value = value; return x; }).ToList();
+               
+            }
+        }
+        public string PutComment
+        {
+            get
+            {
+               return Appointment.Comment;
+            }
+            set
+            {
+                Appointment.Comment = value;
             }
         }
         public string GetStartTime
@@ -121,7 +145,7 @@ namespace FhirTestKlient.Models
             }
         }
 
-        public ClientAppointment(Appointment app)
+        public ClientAppointment(Hl7.Fhir.Model.Appointment app)
         {
             Appointment = app;
 
@@ -132,6 +156,23 @@ namespace FhirTestKlient.Models
         public ClientAppointment()
         {
             
+        }
+
+        public static AppointmentStatus? GetAppointmentStatus(string status)
+        {
+            switch (status.ToLower())
+            {
+                case "booked": return AppointmentStatus.Booked;
+                case "checkedin": return AppointmentStatus.CheckedIn;
+                case "pending": return AppointmentStatus.Pending;
+                case "proposed": return AppointmentStatus.Proposed;
+                case "fulfilled": return AppointmentStatus.Fulfilled;
+                case "noshow": return AppointmentStatus.Noshow;
+                //case 50: return AppointmentStatus.;
+                case "cancelled": return AppointmentStatus.Cancelled;
+                case "waitlist": return AppointmentStatus.Waitlist;
+                default: return AppointmentStatus.EnteredInError;
+            }
         }
 
     }

@@ -29,6 +29,7 @@ namespace FhirTestKlient.ViewModels
             //appointments.Add(SkapaTestAppointment3());
 
         }
+
         public string GetIdentifierValue
         {
             get
@@ -38,6 +39,7 @@ namespace FhirTestKlient.ViewModels
                 return "";
             }
         }
+
         public string GetStartTime
         {
             get
@@ -46,6 +48,7 @@ namespace FhirTestKlient.ViewModels
 
             }
         }
+
         public string GetEndTime
         {
             get
@@ -54,6 +57,7 @@ namespace FhirTestKlient.ViewModels
 
             }
         }
+
         public string GetJSONappointments
         {
             get
@@ -61,18 +65,24 @@ namespace FhirTestKlient.ViewModels
                 var serializer = new FhirJsonSerializer();
 
                 string text;
-                
-                    Bundle newBund = new Bundle();
-                    newBund.Entry = new List<Bundle.EntryComponent>();
-                    foreach (var app in appointments)
-                    {
-                        Bundle.EntryComponent comp = new Bundle.EntryComponent();
-                        comp.Resource = app.Appointment;
 
-                        newBund.Entry.Add(comp);
-                    }
-                    text = serializer.SerializeToString(newBund);
-                return text;
+                Bundle newBund = new Bundle();
+
+                newBund.Entry = new List<Bundle.EntryComponent>();
+
+                foreach (var app in appointments)
+                {
+                    Bundle.EntryComponent comp = new Bundle.EntryComponent();
+                    comp.Resource = app.Appointment;
+
+                    newBund.Entry.Add(comp);
+
+                }
+
+                text = serializer.SerializeToString(newBund);
+
+               return text;
+
             }
 
 
