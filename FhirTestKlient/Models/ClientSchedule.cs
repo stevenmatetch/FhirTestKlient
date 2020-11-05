@@ -18,10 +18,24 @@ namespace FhirTestKlient.Models
         {
             get
             {
-                Identifier id = Schedule.Identifier.FirstOrDefault(x => x.Use == Identifier.IdentifierUse.Old);
+                Identifier id = Schedule.Identifier.FirstOrDefault();
                 if (id != null) return id.Value;
                 return "";
             }
         }
+        public string GetPlanningHorizonStart
+        {
+            get
+            {
+                return Schedule.PlanningHorizon.Start);
+            }
+        }
+        //public string GetPlanningHorizonEnd
+        //{
+        //    get
+        //    {
+        //        return Schedule.PlanningHorizon.End.ToString("yyyy-MM-dd   HH: mm:ss");
+        //    }
+        //}
     }
 }

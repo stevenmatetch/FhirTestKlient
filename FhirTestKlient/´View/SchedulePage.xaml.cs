@@ -23,10 +23,10 @@ namespace FhirTestKlient._View
     /// </summary>
     public sealed partial class SchedulePage : Page
     {
-        public ClientScheduleViewModel ClientScheduleViewModel { get; set; }
+        public ClientScheduleViewModel clientScheduleViewModel { get; set; }
         public SchedulePage()
         {
-            ClientScheduleViewModel = new ClientScheduleViewModel();
+            clientScheduleViewModel = new ClientScheduleViewModel();
             this.InitializeComponent();
         }
 

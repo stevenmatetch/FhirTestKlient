@@ -13,7 +13,7 @@
         <SplitView Name="MySplitView" DisplayMode="CompactOverlay" OpenPaneLength="500" CompactPaneLength="0" Margin="0,54,971,53">
             <SplitView.Pane>
 
-                <TextBox x:Name="JsonTextBlock" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="15"  TextWrapping="Wrap" Text="{x:Bind ClientScheduleViewModel.GetJSONSchedule}"></TextBox>
+                <TextBox x:Name="JsonTextBlock" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="15"  TextWrapping="Wrap" Text="{x:Bind clientScheduleViewModel.GetJSONSchedule}"></TextBox>
 
             </SplitView.Pane>
 
@@ -27,15 +27,15 @@
             <Button Content="Hämta" CornerRadius="5" Margin="10,0,0,0" Height="65" Width="146"/>
         </Grid>
 
-        <ListView Margin="615,54,103,464" ItemsSource="{x:Bind ClientScheduleViewModel.schedules}">
+        <ListView Margin="615,54,103,464" ItemsSource="{x:Bind clientScheduleViewModel.GetJSONSchedule}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:ClientSchedule" >
                     <StackPanel Spacing="5" Orientation="Vertical">
 
                         <TextBlock Text =""   FontWeight="SemiBold" FontSize="18" />
                         <TextBlock Text="{x:Bind GetIdentifierValue}"  FontWeight="SemiBold" FontSize="18" />
-                        <TextBlock Text ="{x:Bind Schedule.PlanningHorizon.Start}"  FontWeight="SemiBold" FontSize="18" />
-                        <TextBlock Text ="{x:Bind Schedule.PlanningHorizon.End}"  FontWeight="SemiBold" FontSize="18" />
+                        <TextBlock Text ="{x:Bind GetPlanningHorizonStart}"  FontWeight="SemiBold" FontSize="18" />
+                        <!--<TextBlock Text ="{x:Bind Schedule.PlanningHorizon.End}"  FontWeight="SemiBold" FontSize="18" />-->
                   
                                                <!--<TextBlock Text ="{x:Bind Slot.}"   FontWeight="SemiBold" FontSize="18" />-->
 

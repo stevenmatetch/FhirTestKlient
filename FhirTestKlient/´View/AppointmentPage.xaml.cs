@@ -17,6 +17,7 @@ using Hl7.Fhir.Model;
 using FhirTestKlient._View;
 using FhirTestKlient.Services;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -36,10 +37,11 @@ namespace FhirTestKlient.Models
         {
             aPIServices = new APIServices();
             clientappointmentViewModel = new ClientAppointmentViewModel();
-            clientappointmentViewModel.appointments = new System.Collections.ObjectModel.ObservableCollection<ClientAppointment>();
+            clientappointmentViewModel.appointments = new ObservableCollection<ClientAppointment>();
+
             this.InitializeComponent();
             GetAllAppointments();
-         
+
         }
         public ClientAppointmentViewModel UpdateClientAppointmentViewModel
         {
@@ -66,7 +68,10 @@ namespace FhirTestKlient.Models
 
         public async void GetAllAppointments()
         {
+            UpdateClientAppointmentViewModel.appointments = await aPIServices.GetAllAppointmentAsync();
             appointmentListview.ItemsSource = await aPIServices.GetAllAppointmentAsync();
+
+           
 
         } //clientappointmentViewModel.appointments = await aPIServices.GetAllAppointmentAsync();
 
@@ -76,6 +81,7 @@ namespace FhirTestKlient.Models
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(SlotPage));
+        
 
         }
 
@@ -88,6 +94,7 @@ namespace FhirTestKlient.Models
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
+           
 
         }
 
@@ -96,7 +103,7 @@ namespace FhirTestKlient.Models
         {
             PostAndPutAppointmentDialog c = new PostAndPutAppointmentDialog();
             var res = await c.ShowAsync();
-        
+            GetAllAppointments();
 
         }
 

@@ -18,41 +18,41 @@ namespace FhirTestKlient.ViewModels
         public ClientScheduleViewModel()
         {
             schedules = new ObservableCollection<ClientSchedule>();
-            schedules.Add(SkapaTestSchedule1());
-            schedules.Add(SkapaTestSchedule2());
+            //schedules.Add(SkapaTestSchedule1());
+            //schedules.Add(SkapaTestSchedule2());
         }
-        public ClientSchedule SkapaTestSchedule1()
-        {
+        //public ClientSchedule SkapaTestSchedule1()
+        //{
 
-            Schedule schedule = new Schedule();
-            schedule.Identifier = new List<Identifier>();
-            schedule.Identifier.Add(new Identifier() { Value = "Schedule 1", Use = Identifier.IdentifierUse.Old });
-            schedule.Identifier.Add(new Identifier() { Value = "Schedule 2", Use = Identifier.IdentifierUse.Usual });
-            schedule.PlanningHorizon = new Period();
-            schedule.PlanningHorizon.Start = DateTime.Now.ToString("yyyy-MM-dd   HH: mm:ss");
-
-
-            schedule.PlanningHorizon.End = DateTime.Now.AddDays(2).ToString("yyyy-MM-dd   HH: mm:ss");
+        //    Schedule schedule = new Schedule();
+        //    schedule.Identifier = new List<Identifier>();
+        //    schedule.Identifier.Add(new Identifier() { Value = "Schedule 1", Use = Identifier.IdentifierUse.Old });
+        //    schedule.Identifier.Add(new Identifier() { Value = "Schedule 2", Use = Identifier.IdentifierUse.Usual });
+        //    schedule.PlanningHorizon = new Period();
+        //    schedule.PlanningHorizon.Start = DateTime.Now.ToString("yyyy-MM-dd   HH: mm:ss");
 
 
-            return new ClientSchedule(schedule);
+        //    schedule.PlanningHorizon.End = DateTime.Now.AddDays(2).ToString("yyyy-MM-dd   HH: mm:ss");
 
-        }
-        public ClientSchedule SkapaTestSchedule2()
-        {
 
-            Schedule schedule = new Schedule();
-            schedule.Identifier = new List<Identifier>();
-            schedule.Identifier.Add(new Identifier() { Value = "Schedule 4", Use = Identifier.IdentifierUse.Old });
-            schedule.Identifier.Add(new Identifier() { Value = "Schedule 3", Use = Identifier.IdentifierUse.Usual });
-            schedule.PlanningHorizon = new Period();
-            schedule.PlanningHorizon.Start = DateTime.Now.ToString("yyyy-MM-dd   HH: mm:ss");
+        //    return new ClientSchedule(schedule);
 
-            schedule.PlanningHorizon.End = DateTime.Now.AddDays(9).ToString("yyyy-MM-dd   HH: mm:ss");
+        //}
+        //public ClientSchedule SkapaTestSchedule2()
+        //{
 
-            return new ClientSchedule(schedule);
+        //    Schedule schedule = new Schedule();
+        //    schedule.Identifier = new List<Identifier>();
+        //    schedule.Identifier.Add(new Identifier() { Value = "Schedule 4", Use = Identifier.IdentifierUse.Old });
+        //    schedule.Identifier.Add(new Identifier() { Value = "Schedule 3", Use = Identifier.IdentifierUse.Usual });
+        //    schedule.PlanningHorizon = new Period();
+        //    schedule.PlanningHorizon.Start = DateTime.Now.ToString("yyyy-MM-dd   HH: mm:ss");
 
-        }
+        //    schedule.PlanningHorizon.End = DateTime.Now.AddDays(9).ToString("yyyy-MM-dd   HH: mm:ss");
+
+        //    return new ClientSchedule(schedule);
+
+        //}
         public string GetJSONSchedule
 
         {

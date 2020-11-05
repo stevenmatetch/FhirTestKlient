@@ -85,10 +85,8 @@ namespace FhirTestKlient.ViewModels
 
             }
 
-
         }
-
-
+    
     }
 
         //public ClientAppointment SkapaTestAppointment1()

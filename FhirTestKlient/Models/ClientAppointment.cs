@@ -37,7 +37,16 @@ namespace FhirTestKlient.Models
         {
             get
             {
-                return PutEndDate - PutEndDate.Date;
+                DateTime today = new DateTime().AddMinutes(15);
+                try
+                {
+                    return PutEndDate - PutEndDate.Date;
+                }
+                catch (Exception)
+                {
+
+                }
+                return today.TimeOfDay;
 
             }
             set
@@ -51,7 +60,16 @@ namespace FhirTestKlient.Models
             
             get
             {
-                return PutStartDate - PutStartDate.Date;
+                DateTime today = new DateTime();
+                try
+                {
+                    return PutStartDate - PutStartDate.Date;
+                }
+                catch(Exception)
+                {
+
+                }
+                return today.TimeOfDay;
 
             }
             set
@@ -62,8 +80,23 @@ namespace FhirTestKlient.Models
         
         public DateTimeOffset PutStartDate
         {
+           
             get
             {
+                try
+                {
+                    DateTime today = new DateTime();
+                    if (Appointment.Start == null)
+                    {
+                        return today.Date;
+                    }
+                   
+                }
+                catch (Exception)
+                {
+                   
+                }
+
                 return Appointment.Start.GetValueOrDefault();
 
             }
@@ -78,6 +111,21 @@ namespace FhirTestKlient.Models
            
             get
             {
+
+                try
+                {
+                    DateTimeOffset today = new DateTimeOffset();
+                    if (Appointment.End == null)
+                    {
+                        return today.Date;
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
                 return Appointment.End.GetValueOrDefault();
 
             }

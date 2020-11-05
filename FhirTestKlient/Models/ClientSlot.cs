@@ -30,5 +30,24 @@ namespace FhirTestKlient.Models
 
             }
         }
+        public string GetIdentifierValue
+        {
+            get
+            {
+                Identifier id = Slot.Identifier.FirstOrDefault();
+                if (id != null) return id.Value;
+                return "";
+            }
+        }
+        public string GetServiceType
+        {
+            get
+            {
+                CodeableConcept cc = Slot.ServiceType.FirstOrDefault();                
+                
+                if (cc != null) return cc.Text;
+                return "";
+            }
+        }
     }
 }

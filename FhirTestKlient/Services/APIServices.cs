@@ -17,6 +17,8 @@ namespace FhirTestKlient.Services
         private static string BaseUrl = "https://localhost:44345/api";
         private static string GetAllPatientsUrl = "https://localhost:44345/api/Patient";
         private static string AppointmentsUrl = "https://localhost:44345/api/Appointment";
+        private static string SlotsUrl = "https://localhost:44345/api/Slot";
+        private static string ScheduleUrl = "https://localhost:44345/api/Schedule";
 
         /// <summary>
         /// Hämtar en Patient från FHIR-servern
@@ -146,6 +148,50 @@ namespace FhirTestKlient.Services
 
                 return JsonConvert.DeserializeObject<Appointment>(p);
             }
+
+        }
+        public async Task<ObservableCollection<ClientSlot>> GetAllSlotsAsync()
+        {
+
+            var jsonGetAllSlots = await httpClient.GetStringAsync(SlotsUrl);
+
+            ObservableCollection<ClientSlot> retVal = new ObservableCollection<ClientSlot>();
+
+            FhirJsonParser fjp = new FhirJsonParser();
+            Bundle bund = fjp.Parse<Bundle>(jsonGetAllSlots);
+            if (null != bund)
+            {
+                foreach (var entry in bund.Entry)
+                {
+
+                    ClientSlot newSlot = new ClientSlot(entry.Resource as Slot);
+                    retVal.Add(newSlot);
+                }
+            }
+            return retVal;
+
+        }
+        public async Task<ObservableCollection<ClientSchedule>> GetAllScheduleAsync()
+        {
+
+            var jsonGetAllSchedules = await httpClient.GetStringAsync(ScheduleUrl);
+
+            ObservableCollection<ClientSchedule> retVal = new ObservableCollection<ClientSchedule>();
+
+            FhirJsonParser fjp = new FhirJsonParser();
+            Bundle bund = fjp.Parse<Bundle>(jsonGetAllSchedules);
+
+            if (null != bund)
+            {
+                foreach (var entry in bund.Entry)
+                {
+
+                    ClientSchedule newSch = new ClientSchedule(entry.Resource as Schedule);
+                    retVal.Add(newSch);
+                }
+
+            }
+            return retVal;
 
         }
     }

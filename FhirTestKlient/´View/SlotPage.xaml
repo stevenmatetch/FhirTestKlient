@@ -10,11 +10,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid >
-        <SplitView  Name="MySplitView" DisplayMode="CompactOverlay" OpenPaneLength="500" CompactPaneLength="0" Margin="0,54,971,53">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="92*"/>
+
+
+        </Grid.RowDefinitions>
+        <SplitView  Name="MySplitView" DisplayMode="CompactOverlay" OpenPaneLength="500" CompactPaneLength="0" Margin="0,54,971,53" Grid.RowSpan="2">
             <SplitView.Pane>
 
 
-                <TextBox x:Name="JsonTextBlock" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{x:Bind clientSlotViewModel.GetJSONSlot}" FontSize="15" Margin="10,30,30,30" />
+                <TextBox x:Name="JsonTextBlock" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{x:Bind UpdateClientSlotViewModel.GetJSONSlots}" FontSize="15" Margin="10,30,30,30" />
 
 
             </SplitView.Pane>
@@ -25,12 +30,9 @@
         <Button x:Name="BackButton" FontFamily="segoe MDL2 Assets" Content="&#xE72B;" Margin="55,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="BackButton_Click"/>
         <Button x:Name="ForwardButton" FontFamily="segoe MDL2 Assets" Content="&#xE72A;" Margin="110,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="ForwardButton_Click"/>
 
-        <Grid Margin="823,821,494,91">
-            <Button Content="Hämta" CornerRadius="5" Margin="10,0,0,0" Height="65" Width="146"/>
-           
-        </Grid>
-       
-        <ListView Margin="615,54,103,464" ItemsSource="{x:Bind clientSlotViewModel.slots}">
+      
+
+        <ListView x:Name="SlotListView" Margin="597,534,138,165" ItemsSource="{x:Bind clientSlotViewModel.slots}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:ClientSlot" >
                     <StackPanel Spacing="5" Orientation="Vertical">
@@ -38,10 +40,13 @@
 
                         <TextBlock Text =""   FontWeight="SemiBold" FontSize="18" />
 
+                        <TextBlock Text ="{x:Bind GetIdentifierValue}"  FontWeight="SemiBold" FontSize="18" />
                         <TextBlock Text ="{x:Bind GetStartTime}"  FontWeight="SemiBold" FontSize="18" />
                         <TextBlock Text ="{x:Bind GetEndTime }"  FontWeight="SemiBold" FontSize="18" />
                         <TextBlock Text ="{x:Bind Slot.Status}"  FontWeight="SemiBold" FontSize="18" />
-                       
+
+                        <TextBlock Text ="{x:Bind GetServiceType}"  FontWeight="SemiBold" FontSize="18" />
+
 
                         <TextBlock Text =""   FontWeight="SemiBold" FontSize="18" />
 
@@ -53,8 +58,32 @@
 
 
         </ListView>
+        <Grid BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Margin="597,534,138,165"/>
+        <ListView x:Name="ScheduleListView" Margin="597,135,138,500" ItemsSource="{x:Bind clientScheduleViewModel.schedules}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:ClientSchedule" >
+                    <StackPanel Spacing="5" Orientation="Vertical">
 
 
+                        <TextBlock Text =""   FontWeight="SemiBold" FontSize="18" />
+
+                        <TextBlock Text="{x:Bind GetIdentifierValue}"  FontWeight="SemiBold" FontSize="18" />
+                        <TextBlock Text ="{x:Bind GetPlanningHorizonStart}"  FontWeight="SemiBold" FontSize="18" />
+                        <!--<TextBlock Text ="{x:Bind Schedule.PlanningHorizon.End}"  FontWeight="SemiBold" FontSize="18" />-->
+                     
+
+
+
+                        <TextBlock Text =""   FontWeight="SemiBold" FontSize="18" />
+
+                    </StackPanel>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+
+        </ListView>
 
     </Grid>
 </Page>

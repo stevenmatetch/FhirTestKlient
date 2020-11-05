@@ -18,7 +18,7 @@ namespace FhirTestKlient.Models
         {
             get
             {
-                Identifier id = PractitionerRole.Identifier.FirstOrDefault(x => x.Use == Identifier.IdentifierUse.Old);
+                Identifier id = PractitionerRole.Identifier.FirstOrDefault();
                 if (id != null) return id.Value;
                 return "";
             }
