@@ -9,7 +9,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid >
-        <SplitView Name="MySplitView" DisplayMode="CompactOverlay" OpenPaneLength="500" CompactPaneLength="0" Margin="0,54,971,53">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="219*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="584*"/>
+            <ColumnDefinition Width="184*"/>
+            <ColumnDefinition Width="351*"/>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="236*"/>
+
+        </Grid.ColumnDefinitions>
+        <SplitView Name="MySplitView" DisplayMode="CompactOverlay" OpenPaneLength="500" CompactPaneLength="0" Margin="0,54,55,53" Grid.RowSpan="2">
             <SplitView.Pane>
 
 
@@ -19,36 +31,16 @@
             <Grid Margin="0,10,0,-10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="41*"/>
-                  
+
                 </Grid.RowDefinitions>
             </Grid>
 
         </SplitView>
 
-        <Grid Margin="100,144,27,10">
-            <!--<GridView ItemsSource="{x:Bind clientappointmentViewModel.appointments}"     Margin="511,539,30,148">
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="models:ClientAppointment">
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text ="{x:Bind GetIdentifierValue }"  Height="40" Width="150"  FontWeight="SemiBold" FontSize="18"  Grid.Column="0"/>
-                            <CalendarDatePicker   Date="{x:Bind Appointment.Start}"  Height="40" Width="150"  FontWeight="SemiBold" FontSize="18" Grid.Column="1"/>
-                            <CalendarDatePicker  Date="{x:Bind Appointment.End}" Height="40" Width="150"  FontWeight="SemiBold" FontSize="18" Grid.Column="2"/>
-                            <TextBox Text ="{x:Bind Appointment.Comment }" Height="40" Width="300"  FontWeight="SemiBold" FontSize="18" Grid.Column="3"/>
-                            <ComboBox x:Name="statusComboBox" ItemsSource="{Binding Statuses }"  PlaceholderText="{Binding Appointment.Status}"  Height="40" Width="150" FontWeight="SemiBold" FontSize="18"  Grid.Column="4" >
-                            </ComboBox>
-                        </Grid>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>-->
+        <Grid Margin="100,9,27,10" Grid.ColumnSpan="5" Grid.Row="1">
 
-            <ListView x:Name="appointmentListview" ItemsSource="{x:Bind clientappointmentViewModel.appointments}"  SelectedValue="{x:Bind selectedAppointemnt, Mode=TwoWay}" Margin="511,10,92,353" >
+
+            <ListView x:Name="appointmentListview" ItemsSource="{x:Bind clientappointmentViewModel.appointments}"  SelectedValue="{x:Bind selectedAppointemnt, Mode=TwoWay}" Margin="511,-18,92,127" >
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:ClientAppointment" >
                         <StackPanel Spacing="5" Orientation="Vertical">
@@ -68,22 +60,24 @@
                 </ListView.ItemTemplate>
 
             </ListView>
-            
-            <Grid Margin="511,10,92,353" BorderBrush="Gray" BorderThickness="2" CornerRadius="5">
+
+            <Grid Margin="511,-18,92,127" BorderBrush="Gray" BorderThickness="2" CornerRadius="5">
 
             </Grid>
 
         </Grid>
-        <Grid Margin="595,837,83,75">
-            <Button Content="Hämta" CornerRadius="5" Margin="10,0,0,0" Height="65" Width="146"/>
-            <Button Content="Ta bort" CornerRadius="5"  Margin="229,0,0,0" Height="65" Width="146"/>
-            <Button Content="Uppdatera" CornerRadius="5"  Margin="446,-173,0,0" Height="65" Width="146" Click="Uppdaterra_Click" VerticalAlignment="Top"/>
-            <Button Content="Registrera" CornerRadius="5"  Margin="660,-172,0,0" Height="65" Width="146" Click="Registrera_Click" VerticalAlignment="Top"/>
-        </Grid>
+
+
+
+        <Button Content="Editera" CornerRadius="5"  Margin="8,747,0,0" Height="50" Width="184" Click="Editera_Click" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1"/>
+        <Button Content="Registrera" CornerRadius="5"  Margin="218,747,0,0" Height="50" Width="184" Click="Registrera_Click" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+
 
         <Button x:Name="OpenSplitview" FontSize="12" FontFamily="segoe MDL2 Assets" Content="&#xE712;" Margin="0,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="OpenSplitview_Click"/>
         <Button x:Name="BackButton" FontFamily="segoe MDL2 Assets" Content="&#xE72B;" Margin="55,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="BackButton_Click"/>
         <Button x:Name="ForwardButton" FontFamily="segoe MDL2 Assets" Content="&#xE72A;" Margin="110,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="ForwardButton_Click"/>
-
+        <Grid Grid.Column="1" Margin="188,20,89,25" CornerRadius="5" BorderBrush="Gray" BorderThickness="2" Grid.ColumnSpan="2" >
+            <TextBlock HorizontalAlignment="Center" Text="Appointemnt" FontWeight="SemiBold" FontSize="40"   TextWrapping="Wrap" VerticalAlignment="Center" Height="53" Width="261"/>
+        </Grid>
     </Grid>
 </Page>

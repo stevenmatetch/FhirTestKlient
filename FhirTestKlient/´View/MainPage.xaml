@@ -9,16 +9,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid >
-       
+
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="214*"/>
-                <RowDefinition Height="465*"/>
-                <RowDefinition Height="321*"/>
+                <RowDefinition Height="104*"/>
+                <RowDefinition Height="225*"/>
+                <RowDefinition Height="535*"/>
+                <RowDefinition Height="136*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="274*"/>
-                <ColumnDefinition Width="295*"/>
+                <ColumnDefinition Width="57*"/>
+                <ColumnDefinition Width="182*"/>
+                <ColumnDefinition Width="56*"/>
                 <ColumnDefinition Width="181*"/>
             </Grid.ColumnDefinitions>
 
@@ -45,9 +48,9 @@
 
                 </StackPanel>
             </Grid>-->
-            <Button Content="Hämta" FontWeight="SemiBold" FontSize="15"  Margin="51,101,0,0" CornerRadius="5" VerticalAlignment="Top" Height="60" Width="184" Click="Button_Click" Grid.Column="1" Grid.Row="2"/>
+            <Button Content="Hämta" FontWeight="SemiBold" FontSize="15"  Margin="51,0,0,0" CornerRadius="5" Height="50" Width="184" Click="Button_Click" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"/>
 
-            <SplitView  Name="MySplitView" DisplayMode="Overlay" OpenPaneLength="500" CompactPaneLength="0" Margin="0,54,19,53" Grid.RowSpan="3">
+            <SplitView  Name="MySplitView" DisplayMode="Overlay" OpenPaneLength="500" CompactPaneLength="0" Margin="0,54,19,53" Grid.RowSpan="4">
                 <SplitView.Pane >
 
                     <TextBox  x:Name="JsonTextBlock" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="{x:Bind UpdateClientPatientViewModel.GetJSONPatient, Mode=OneWay}" FontSize="15" Margin="10,30,30,30" />
@@ -58,16 +61,16 @@
 
             <Button x:Name="OpenSplitview" FontSize="12" FontFamily="segoe MDL2 Assets" Content="&#xE712;" Margin="0,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="OpenSplitview_Click"/>
             <Button x:Name="BackButton" FontFamily="segoe MDL2 Assets" Content="&#xE72B;" Margin="55,20,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="BackButton_Click"/>
-            <Button x:Name="ForwardButton" FontFamily="segoe MDL2 Assets" Content="&#xE72A;" Margin="307,19,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="ForwardButton_Click" Grid.Column="2"/>
-         
-            <ComboBox x:Name="pnrCombobox" Grid.Column="1" SelectedValue=""  Margin="295,99,0,0" Grid.Row="2" Width="266" Height="62" PlaceholderText="personnummer" FontWeight="SemiBold"  FontSize="17" ItemsSource="{x:Bind pnr  }" />
-            
-            <Grid Grid.Column="1" Grid.Row="1" BorderBrush="Gray" BorderThickness="2" CornerRadius="5">
+            <Button x:Name="ForwardButton" FontFamily="segoe MDL2 Assets" Content="&#xE72A;" Margin="307,19,0,0" VerticalAlignment="Top" Width="55" Height="34" Click="ForwardButton_Click" Grid.Column="4"/>
+
+            <ComboBox x:Name="pnrCombobox" Grid.Column="2" SelectedValue=""  Margin="176,0,0,0" Grid.Row="3" Width="184" Height="50" PlaceholderText="personnummer" FontWeight="SemiBold"  FontSize="17" ItemsSource="{x:Bind pnr  }" VerticalAlignment="Center" />
+
+            <Grid Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Grid.ColumnSpan="3">
 
                 <ListView Grid.Column="1" Grid.Row="1" x:Name="listAllPatient" ItemsSource="{x:Bind ClientPatientViewModel.Patients}"  >
 
                     <ListView.ItemTemplate>
-                        
+
                         <DataTemplate x:DataType="models:ClientPatient" >
 
                             <StackPanel x:Name="stack1"  Orientation="Horizontal" Spacing="15"   >
@@ -75,9 +78,9 @@
                                 <TextBlock Text ="{x:Bind GetIdentifierValue}"  FontWeight="SemiBold" FontSize="18"/>
 
                                 <TextBlock Text ="{x:Bind GetOfficialName }"  FontWeight="SemiBold" FontSize="18"/>
-                                
+
                                 <TextBlock Text ="{x:Bind GetAddress }"  FontWeight="SemiBold" FontSize="18"/>
-                                
+
                                 <TextBlock Text ="{x:Bind GetTelecom }"  FontWeight="SemiBold" FontSize="18"/>
 
                                 <TextBlock Text ="{x:Bind Patient.Gender }"  FontWeight="SemiBold" FontSize="18"/>
@@ -85,14 +88,14 @@
                             </StackPanel>
 
                         </DataTemplate>
-                        
+
                     </ListView.ItemTemplate>
 
                 </ListView>
 
             </Grid>
-            
-            <Grid Grid.Column="1" Margin="0,0,0,17" BorderBrush="Gray" BorderThickness="2" CornerRadius="5" >
+
+            <Grid Grid.Column="1" Margin="0,25,10,17" BorderBrush="Gray" BorderThickness="2" CornerRadius="5" Grid.ColumnSpan="3" Grid.Row="1" >
 
 
                 <StackPanel Margin="10,14,16,8" Spacing="10">
@@ -110,9 +113,12 @@
                 </StackPanel>
 
             </Grid>
+            <Grid Grid.Column="2" CornerRadius="5" BorderBrush="Gray" BorderThickness="2" Margin="40,20,48,0">
+                <TextBlock HorizontalAlignment="Center" Text="Patient" FontWeight="SemiBold" FontSize="40" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,11,0,0"/>
+            </Grid>
 
         </Grid>
-        
+
     </Grid>
-    
+
 </Page>
