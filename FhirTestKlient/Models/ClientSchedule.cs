@@ -27,15 +27,17 @@ namespace FhirTestKlient.Models
         {
             get
             {
-                return Schedule.PlanningHorizon.Start);
+                DateTime time = DateTime.Parse(Schedule.PlanningHorizon.Start);
+                return time.ToString("yyyy-MM-dd HH:mm:ss");
             }
         }
-        //public string GetPlanningHorizonEnd
-        //{
-        //    get
-        //    {
-        //        return Schedule.PlanningHorizon.End.ToString("yyyy-MM-dd   HH: mm:ss");
-        //    }
-        //}
+        public string GetPlanningHorizonEnd
+        {
+            get
+            {
+                DateTime time = DateTime.Parse(Schedule.PlanningHorizon.End);
+                return time.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+        }
     }
 }
